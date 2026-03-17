@@ -14,4 +14,4 @@ jobs:
           image-ref: 'node:20-alpine'
           format: 'table'
           exit-code: '1'
-          severity: 'CRITICAL,HIGH'
+          severity: 'CRITICAL'
