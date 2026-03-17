@@ -1,6 +1,10 @@
-# We are using an old version on purpose to see the security alerts
-FROM node:20-alpine
-USER root
+# Use a build stage to keep it clean
+FROM node:20-alpine AS build
 WORKDIR /app
 COPY . .
-CMD ["node", "app.js"]
+
+# The Final Secure Image (Distroless)
+FROM gcr.io/distroless/nodejs20-debian12
+COPY --from=build /app /app
+WORKDIR /app
+CMD ["app.js"]
